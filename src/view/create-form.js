@@ -587,4 +587,4 @@ export const createForm = () => (
       </div>
     </main>
   </body>`
-)
+);

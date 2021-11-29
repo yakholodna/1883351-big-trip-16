@@ -424,4 +424,4 @@ export const createSortedMenu = () => (
       </div>
     </main>
   </body>`
-)
+);
