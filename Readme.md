@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [лиза холодная](https://up.htmlacademy.ru/ecmascript/16/user/1883351).
-* Наставник: `Александра Яковина`.
+* Наставник: [Александра Яковина](https://htmlacademy.ru/profile/sashayakovyna).
 
 ---
 
