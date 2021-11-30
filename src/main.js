@@ -5,7 +5,8 @@ import {createForm} from './view/create-form.js';
 import {editForm} from './view/edit-form.js';
 import {createMainTrip} from './view/destination.js';
 import {createEvent} from './view/events.js';
-import {EVENT_COUNT, positions} from './utils.js';
+import {EVENT_COUNT, positions} from './constants.js';
+import {generateEvent} from './mock/event.js';
 
 const pageBody = document.querySelector('.page-body');
 const filterContainer = document.querySelector('.trip-controls__filters');
@@ -22,6 +23,6 @@ renderElement(filterContainer, createFilterMenu(), positions.BEFOREEND);
 renderElement(tripEvents, createSortMenu(), positions.BEFOREEND);
 renderElement(tripEvents, editForm(), positions.AFTERBEGIN);
 for (let i = 0; i < EVENT_COUNT; i++) {
-  renderElement(tripEvents, createEvent(), positions.BEFOREEND);
+  renderElement(tripEvents, createEvent(generateEvent()), positions.BEFOREEND);
 }
 renderElement(pageBody, createForm(), positions.BEFOREEND);
