@@ -31,5 +31,8 @@ export const getRandomCityPic = () => {
   const randomIndex = getRandomInteger(0, 200);
   return `${cityDescriptionPhoto}${randomIndex}`;
 };
+export const isFavorite = () => {
+  return Boolean(getRandomInteger(0,1));
+};
 
 

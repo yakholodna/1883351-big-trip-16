@@ -17,12 +17,17 @@ const tripDestination = document.querySelector('.trip-main');
 const renderElement = (container, template, location) => {
   container.insertAdjacentHTML(location, template);
 };
+
+const allEvents = [];
+for (let i = 0; i < EVENT_COUNT; i++) {
+  allEvents.push(generateEvent());
+}
 renderElement(tripDestination, createMainTrip(), positions.AFTERBEGIN);
 renderElement(navigationContainer, createMenu(), positions.BEFOREEND);
 renderElement(filterContainer, createFilterMenu(), positions.BEFOREEND);
 renderElement(tripEvents, createSortMenu(), positions.BEFOREEND);
-renderElement(tripEvents, editForm(), positions.AFTERBEGIN);
-for (let i = 0; i < EVENT_COUNT; i++) {
-  renderElement(tripEvents, createEvent(generateEvent()), positions.BEFOREEND);
+renderElement(tripEvents, editForm(allEvents[0]), positions.BEFOREEND);
+for (let i = 0; i < allEvents.length; i++) {
+  renderElement(tripEvents, createEvent(allEvents[i]), positions.BEFOREEND);
 }
-renderElement(pageBody, createForm(), positions.BEFOREEND);
+renderElement(pageBody, createForm(allEvents[0]), positions.BEFOREEND);
