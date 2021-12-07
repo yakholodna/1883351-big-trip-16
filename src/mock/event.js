@@ -4,8 +4,8 @@ export const generateEvent = () => {
   const startDate = generateRandomDate();
   const endDate = generateRandomDate();
   //Всё додумала, вот только не могу разобраться как посчитать разницу
-  const hourDiff = endDate.diff(startDate, 'hour');
-  const minDiff = endDate.diff(startDate, 'minute');
+  //const hourDiff = endDate.diff(startDate, 'hour');
+  //const minDiff = endDate.diff(startDate, 'minute');
 
   return {
     'city': getRandomCity(),
@@ -15,7 +15,7 @@ export const generateEvent = () => {
     'date': generateRandomDate().format('MMM D'),
     'time': `${startDate.format('HH:MM')}`,
     'endTime': `${endDate.format('HH:MM')}`,
-    'timeDiff': `${hourDiff}H ${minDiff}M`,
+    'timeDiff': '0H 0M',
     'picture': getRandomCityPic,
     isFavorite,
   };

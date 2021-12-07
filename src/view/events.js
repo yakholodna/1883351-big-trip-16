@@ -9,7 +9,7 @@ export const createEvent = (event) => {
     }
   });
   //Creates HTML for all offers for the event
-  let offers = ``;
+  let offers = '';
   for (let i = 0; i < unique.length; i++) {
     // eslint-disable-next-line no-unused-vars
     offers += createSpecialOffers(unique[i]);
