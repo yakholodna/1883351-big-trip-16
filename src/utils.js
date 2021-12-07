@@ -1,4 +1,5 @@
 import {tripTypes, cityOptions, specialOffers, MAX_NUM_OF_OFFERS, cityDescriptions, cityDescriptionPhoto} from './constants.js';
+import dayjs from 'dayjs';
 
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -31,8 +32,10 @@ export const getRandomCityPic = () => {
   const randomIndex = getRandomInteger(0, 200);
   return `${cityDescriptionPhoto}${randomIndex}`;
 };
-export const isFavorite = () => {
-  return Boolean(getRandomInteger(0,1));
-};
+export const isFavorite = () => Boolean(getRandomInteger(0,1));
+const randomDate = (start, end) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+export const generateRandomDate = () => dayjs(randomDate(new Date(2012, 0, 1), new Date()));
+//export const generateRandomHours = () => dayjs(randomDate(new Date(2010, 0, 1), new Date())).format('HH');
+//export const generateRandomMinutes = () => dayjs(randomDate(new Date(2010, 0, 1), new Date())).format('MM');
 
 

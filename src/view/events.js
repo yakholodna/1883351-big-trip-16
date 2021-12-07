@@ -1,11 +1,18 @@
 import {createSpecialOffers} from './special-offers.js';
 
 export const createEvent = (event) => {
+  //Checks whether there are any duplicates
+  const unique = [];
+  event.offers.forEach((offer) => {
+    if(!unique.includes(offer)) {
+      unique.push(offer);
+    }
+  });
   //Creates HTML for all offers for the event
   let offers = ``;
-  for (let i = 0; i < event.offers.length; i++) {
+  for (let i = 0; i < unique.length; i++) {
     // eslint-disable-next-line no-unused-vars
-    offers += createSpecialOffers(event.offers[i]);
+    offers += createSpecialOffers(unique[i]);
   }
   let favClass = '';
   if(event.isFavorite()) {
@@ -13,18 +20,18 @@ export const createEvent = (event) => {
   }
   return `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="2019-03-18">MAR 18</time>
+        <time class="event__date" datetime="2019-03-18">${event.date}</time>
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${event.tripType.toLowerCase()}.png" alt="Event type icon">
         </div>
         <h3 class="event__title">${event.tripType} ${event.city}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+            <time class="event__start-time" datetime="2019-03-18T10:30">${event.time}</time>
             &mdash;
-            <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
+            <time class="event__end-time" datetime="2019-03-18T11:00">${event.endTime}</time>
           </p>
-          <p class="event__duration">30M</p>
+          <p class="event__duration">${event.timeDiff}</p>
         </div>
         <p class="event__price">
           &euro;&nbsp;<span class="event__price-value">20</span>
