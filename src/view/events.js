@@ -1,44 +1,50 @@
 import {createSpecialOffers} from './special-offers.js';
 
 export const createEvent = (event) => {
-  //Checks whether there are any duplicates
+  //Destructurization
+  const {
+    city,
+    tripType,
+    offers,
+    date,
+    time,
+    endTime,
+    timeDiff,
+    favorite} = event;
+  //Checks whether there are any duplicate offers
   const unique = [];
-  event.offers.forEach((offer) => {
+  offers.forEach((offer) => {
     if(!unique.includes(offer)) {
       unique.push(offer);
     }
   });
   //Creates HTML for all offers for the event
-  let offers = '';
-  for (let i = 0; i < unique.length; i++) {
-    // eslint-disable-next-line no-unused-vars
-    offers += createSpecialOffers(unique[i]);
-  }
-  let favClass = '';
-  if(event.isFavorite()) {
-    favClass = 'event__favorite-btn--active';
-  }
+  let offerHTML = '';
+  unique.forEach((item) => {
+    offerHTML += createSpecialOffers(item);
+  });
+  const favClass = favorite ? 'event__favorite-btn--active' : '';
   return `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="2019-03-18">${event.date}</time>
+        <time class="event__date" datetime="2019-03-18">${date}</time>
         <div class="event__type">
-          <img class="event__type-icon" width="42" height="42" src="img/icons/${event.tripType.toLowerCase()}.png" alt="Event type icon">
+          <img class="event__type-icon" width="42" height="42" src="img/icons/${tripType.toLowerCase()}.png" alt="Event type icon">
         </div>
-        <h3 class="event__title">${event.tripType} ${event.city}</h3>
+        <h3 class="event__title">${tripType} ${city}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">${event.time}</time>
+            <time class="event__start-time" datetime="2019-03-18T10:30">${time}</time>
             &mdash;
-            <time class="event__end-time" datetime="2019-03-18T11:00">${event.endTime}</time>
+            <time class="event__end-time" datetime="2019-03-18T11:00">${endTime}</time>
           </p>
-          <p class="event__duration">${event.timeDiff}</p>
+          <p class="event__duration">${timeDiff}</p>
         </div>
         <p class="event__price">
           &euro;&nbsp;<span class="event__price-value">20</span>
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
-        ${offers}
+        ${offerHTML}
         </ul>
         <button class="event__favorite-btn ${favClass}" type="button">
           <span class="visually-hidden">Add to favorite</span>

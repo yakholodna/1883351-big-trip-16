@@ -1,10 +1,16 @@
-export const createForm = (event) => (
-  `<form class="event event--edit" action="#" method="post">
+export const createForm = (form) => {
+  const {
+    tripType,
+    city,
+    description,
+    picture
+  } = form;
+  return `<form class="event event--edit" action="#" method="post">
         <header class="event__header">
         <div class="event__type-wrapper">
         <label class="event__type  event__type-btn" for="event-type-toggle-1">
         <span class="visually-hidden">Choose event type</span>
-        <img class="event__type-icon" width="17" height="17" src="img/icons/${event.tripType.toLowerCase()}.png" alt="Event type icon">
+        <img class="event__type-icon" width="17" height="17" src="img/icons/${tripType.toLowerCase()}.png" alt="Event type icon">
         </label>
         <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
 
@@ -62,9 +68,9 @@ export const createForm = (event) => (
 
     <div class="event__field-group  event__field-group--destination">
       <label class="event__label  event__type-output" for="event-destination-1">
-        ${event.tripType}
+        ${tripType}
       </label>
-      <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${event.city}" list="destination-list-1">
+      <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${city}" list="destination-list-1">
       <datalist id="destination-list-1">
         <option value="Amsterdam"></option>
         <option value="Geneva"></option>
@@ -145,14 +151,14 @@ export const createForm = (event) => (
 
     <section class="event__section  event__section--destination">
       <h3 class="event__section-title  event__section-title--destination">Destination</h3>
-      <p class="event__destination-description">${event.description}</p>
+      <p class="event__destination-description">${description}</p>
 
       <div class="event__photos-container">
         <div class="event__photos-tape">
-          <img class="event__photo" src="${event.picture()}" alt="Event photo">
+          <img class="event__photo" src="${picture}" alt="Event photo">
         </div>
         </div>
       </section>
     </section>
-  </form>`
-);
+  </form>`;
+};

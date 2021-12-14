@@ -35,7 +35,21 @@ export const getRandomCityPic = () => {
 export const isFavorite = () => Boolean(getRandomInteger(0,1));
 const randomDate = (start, end) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 export const generateRandomDate = () => dayjs(randomDate(new Date(2012, 0, 1), new Date()));
-//export const generateRandomHours = () => dayjs(randomDate(new Date(2010, 0, 1), new Date())).format('HH');
-//export const generateRandomMinutes = () => dayjs(randomDate(new Date(2010, 0, 1), new Date())).format('MM');
 
+export const timeDiff = (start, end) => {
+  start = start.split(':');
+  end = end.split(':');
+  const startDate = new Date(0, 0, 0, start[0], start[1], 0);
+  const endDate = new Date(0, 0, 0, end[0], end[1], 0);
+  // eslint-disable-next-line no-shadow
+  let diff = endDate.getTime() - startDate.getTime();
+  let hours = Math.floor(diff / 1000 / 60 / 60);
+  diff -= hours * 1000 * 60 * 60;
+  const minutes = Math.floor(diff / 1000 / 60);
+
+  // If using time pickers with 24 hours format, add the below line get exact hours
+  if (hours < 0) {hours = hours + 24;}
+
+  return `${(hours <= 9 ? '0' : '') + hours  }H${  minutes <= 9 ? '0' : ''  }${minutes}M`;
+};
 
