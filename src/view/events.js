@@ -1,6 +1,7 @@
 import {createSpecialOffers} from './special-offers.js';
+import {createElement} from '../render.js';
 
-export const createEvent = (event) => {
+const createEvent = (event) => {
   //Destructurization
   const {
     city,
@@ -10,7 +11,9 @@ export const createEvent = (event) => {
     time,
     endTime,
     timeDiff,
-    favorite} = event;
+    favorite,
+    // eslint-disable-next-line no-unused-vars
+    description} = event;
   //Checks whether there are any duplicate offers
   const unique = [];
   offers.forEach((offer) => {
@@ -58,3 +61,27 @@ export const createEvent = (event) => {
       </div>
     </li>`;
 };
+
+export default class EventView {
+  #element = null;
+  #event = null;
+
+  constructor(event) {
+    this.#event = event;
+  }
+
+  get element() {
+    if(!this.#element) {
+      this.#element = createElement(this.template);
+    }
+    return this.#element;
+  }
+
+  get template() {
+    return createEvent(this.#event);
+  }
+
+  removeElement() {
+    this.#element = null;
+  }
+}
