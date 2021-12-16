@@ -7,7 +7,6 @@ import CreateFormView from './view/create-form.js';
 import EditFormView from './view/edit-form.js';
 import EventView from './view/events.js';
 import {generateEvent} from './mock/event.js';
-//import {createEditForm} from './mock/item-edit.js';
 import {itemCreate} from './mock/item-create.js';
 import {renderElement, RenderPosition} from './render.js';
 
