@@ -1,4 +1,6 @@
-export const createForm = (form) => {
+import {createElement} from '../render.js';
+
+const createForm = (form) => {
   const {
     tripType,
     city,
@@ -162,3 +164,26 @@ export const createForm = (form) => {
     </section>
   </form>`;
 };
+export default class CreateFormView {
+  #element = null;
+  #form = null;
+
+  constructor(form) {
+    this.#form = form;
+  }
+
+  get element() {
+    if(!this.#element) {
+      this.#element = createElement(this.template);
+    }
+    return this.#element;
+  }
+
+  get template() {
+    return createForm(this.#form);
+  }
+
+  removeElement() {
+    this.#element = null;
+  }
+}

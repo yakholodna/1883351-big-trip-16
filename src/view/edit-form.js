@@ -1,11 +1,23 @@
+import {createElement} from '../render.js';
 
-export const editForm = (form) => {
+const editForm = (form) => {
   //Destricturization
   const {
     city,
-    description,
-    tripType
-  } = form;
+    tripType,
+    // eslint-disable-next-line no-unused-vars
+    offers,
+    // eslint-disable-next-line no-unused-vars
+    date,
+    // eslint-disable-next-line no-unused-vars
+    time,
+    // eslint-disable-next-line no-unused-vars
+    endTime,
+    // eslint-disable-next-line no-unused-vars
+    timeDiff,
+    // eslint-disable-next-line no-unused-vars
+    favorite,
+    description} = form;
   return `<form class="event event--edit" action="#" method="post">
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -160,3 +172,27 @@ export const editForm = (form) => {
     </section>
   </form>`;
 };
+
+export default class EditFormView {
+  #element = null;
+  #form = null;
+
+  constructor(form) {
+    this.#form = form;
+  }
+
+  get element() {
+    if(!this.#element) {
+      this.#element = createElement(this.template);
+    }
+    return this.#element;
+  }
+
+  get template() {
+    return editForm(this.#form);
+  }
+
+  removeElement() {
+    this.#element = null;
+  }
+}

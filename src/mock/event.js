@@ -1,4 +1,4 @@
-import {getRandomTripType, getRandomCity, getRandomSpecialOffers, isFavorite, generateRandomDate, timeDiff} from '../utils.js';
+import {getRandomTripType, getRandomCity, getRandomSpecialOffers, isFavorite, generateRandomDate, timeDiff, getRandomDescription} from '../utils.js';
 
 export const generateEvent = () => {
   const startDate = generateRandomDate();
@@ -16,5 +16,6 @@ export const generateEvent = () => {
     'endTime': `${endDate.format('HH:MM')}`,
     'timeDiff': timeDiff(startDate.format('HH:MM'), endDate.format('HH:MM')),
     'favorite': isFavorite(),
+    'description': getRandomDescription()
   };
 };
