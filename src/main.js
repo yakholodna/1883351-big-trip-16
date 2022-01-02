@@ -9,6 +9,7 @@ import EventView from './view/events.js';
 import {generateEvent} from './mock/event.js';
 import {itemCreate} from './mock/item-create.js';
 import {renderElement, RenderPosition} from './render.js';
+import NoEvents from './view/no-events.js';
 
 const pageBody = document.querySelector('.page-body');
 const filterContainer = document.querySelector('.trip-controls__filters');
@@ -36,6 +37,10 @@ const renderEvent = (eventListElement, event) => {
   eventComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
     replaceEventToForm();
     document.addEventListener('keydown', onEscKeyDown);
+    eventEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+      replaceFormToEvent();
+      document.removeEventListener('keydown', onEscKeyDown);
+    });
   });
   eventEditComponent.element.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -50,12 +55,18 @@ const allEvents = [];
 for (let i = 0; i < EVENT_COUNT; i++) {
   allEvents.push(generateEvent());
 }
-renderElement(tripDestination, new DestinationView().element, RenderPosition.AFTERBEGIN);
+
 renderElement(navigationContainer, new MenuView().element, RenderPosition.BEFOREEND);
 renderElement(filterContainer, new FilterView().element, RenderPosition.BEFOREEND);
-renderElement(tripEvents, new SortMenuView().element, RenderPosition.BEFOREEND);
 
-for (let i = 0; i < allEvents.length; i++) {
-  renderEvent(tripEvents, allEvents[i]);
+if (allEvents.length === 0) {
+  renderElement(tripEvents, new NoEvents().element, RenderPosition.BEFOREEND);
 }
-renderElement(pageBody, new CreateFormView(itemCreate()).element, RenderPosition.BEFOREEND);
+else {
+  renderElement(tripDestination, new DestinationView().element, RenderPosition.AFTERBEGIN);
+  renderElement(tripEvents, new SortMenuView().element, RenderPosition.BEFOREEND);
+  for (let i = 0; i < allEvents.length; i++) {
+    renderEvent(tripEvents, allEvents[i]);
+  }
+  renderElement(pageBody, new CreateFormView(itemCreate()).element, RenderPosition.BEFOREEND);
+}
