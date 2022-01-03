@@ -1,4 +1,4 @@
-export const EVENT_COUNT = 15;
+export const EVENT_COUNT = 25;
 export const MAX_NUM_OF_OFFERS = 5;
 export const positions = {
   BEFOREBEGIN: 'beforebegin',
