@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractClass from './abstract-class.js';
 
 const createForm = (form) => {
   const {
@@ -164,26 +164,15 @@ const createForm = (form) => {
     </section>
   </form>`;
 };
-export default class CreateFormView {
-  #element = null;
+export default class CreateFormView extends AbstractClass{
   #form = null;
 
   constructor(form) {
+    super();
     this.#form = form;
-  }
-
-  get element() {
-    if(!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
   }
 
   get template() {
     return createForm(this.#form);
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

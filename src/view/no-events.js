@@ -1,25 +1,11 @@
-import {createElement} from '../render.js';
+import AbstractClass from './abstract-class';
 
 const createNoEvtTemplate = () => (
   '<p class="trip-events__msg">Click New Event to create your first point</p>'
 );
 
-export default class NoEvents {
-  #element = null;
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-
-    return this.#element;
-  }
-
+export default class NoEvents extends AbstractClass {
   get template() {
     return createNoEvtTemplate();
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

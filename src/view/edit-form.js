@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractClass from './abstract-class.js';
 
 const editForm = (form) => {
   //Destricturization
@@ -173,26 +173,15 @@ const editForm = (form) => {
   </form>`;
 };
 
-export default class EditFormView {
-  #element = null;
+export default class EditFormView extends AbstractClass{
   #form = null;
 
   constructor(form) {
+    super();
     this.#form = form;
-  }
-
-  get element() {
-    if(!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
   }
 
   get template() {
     return editForm(this.#form);
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }
