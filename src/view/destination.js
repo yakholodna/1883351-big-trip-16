@@ -1,4 +1,4 @@
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const createMainTrip = () => (
   `<section class="trip-main__trip-info  trip-info">
@@ -14,7 +14,7 @@ const createMainTrip = () => (
   </section>`
 );
 
-export default class DestinationView extends AbstractClass {
+export default class DestinationView extends AbstractView {
   get template() {
     return createMainTrip();
   }

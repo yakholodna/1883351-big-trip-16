@@ -1,5 +1,5 @@
 import {createSpecialOffers} from './special-offers.js';
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const createEvent = (event) => {
   //Destructurization
@@ -62,7 +62,7 @@ const createEvent = (event) => {
     </li>`;
 };
 
-export default class EventView extends AbstractClass {
+export default class EventView extends AbstractView {
   #event = null;
 
   constructor(event) {

@@ -1,4 +1,4 @@
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const createMenu = () => (
   `
@@ -10,7 +10,7 @@ const createMenu = () => (
   </nav></div>`
 );
 
-export default class MenuView extends AbstractClass {
+export default class MenuView extends AbstractView {
   get template() {
     return createMenu();
   }

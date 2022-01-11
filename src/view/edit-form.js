@@ -1,4 +1,4 @@
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const editForm = (form) => {
   //Destricturization
@@ -170,7 +170,7 @@ const editForm = (form) => {
   </form>`;
 };
 
-export default class EditFormView extends AbstractClass{
+export default class EditFormView extends AbstractView{
   #form = null;
   _submit = {};
 

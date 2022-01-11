@@ -1,4 +1,4 @@
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const createFilterMenu = () => (
   `<div class="trip-main__trip-controls  trip-controls">
@@ -26,7 +26,7 @@ const createFilterMenu = () => (
   </div>`
 );
 
-export default class FilterView extends AbstractClass {
+export default class FilterView extends AbstractView {
   get template() {
     return createFilterMenu();
   }

@@ -1,4 +1,4 @@
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const createForm = (form) => {
   const {
@@ -164,7 +164,7 @@ const createForm = (form) => {
     </section>
   </form>`;
 };
-export default class CreateFormView extends AbstractClass{
+export default class CreateFormView extends AbstractView{
   #form = null;
 
   constructor(form) {

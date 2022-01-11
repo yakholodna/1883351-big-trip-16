@@ -1,4 +1,4 @@
-import AbstractClass from './abstract-class.js';
+import AbstractView from './abstract-view.js';
 
 const createSortMenu = () => (
   `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
@@ -29,7 +29,7 @@ const createSortMenu = () => (
   </form>`
 );
 
-export default class SortMenuView extends AbstractClass{
+export default class SortMenuView extends AbstractView{
   get template() {
     return createSortMenu();
   }
