@@ -7,11 +7,8 @@ const editForm = (form) => {
     tripType,
     // eslint-disable-next-line no-unused-vars
     offers,
-    // eslint-disable-next-line no-unused-vars
     date,
-    // eslint-disable-next-line no-unused-vars
     time,
-    // eslint-disable-next-line no-unused-vars
     endTime,
     // eslint-disable-next-line no-unused-vars
     timeDiff,
@@ -93,10 +90,10 @@ const editForm = (form) => {
 
       <div class="event__field-group  event__field-group--time">
         <label class="visually-hidden" for="event-start-time-1">From</label>
-        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="18/03/19 12:25">
+        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${date} ${time}">
         &mdash;
         <label class="visually-hidden" for="event-end-time-1">To</label>
-        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="18/03/19 13:35">
+        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${date} ${endTime}">
       </div>
 
       <div class="event__field-group  event__field-group--price">
@@ -175,6 +172,7 @@ const editForm = (form) => {
 
 export default class EditFormView extends AbstractClass{
   #form = null;
+  _submit = {};
 
   constructor(form) {
     super();
@@ -183,5 +181,25 @@ export default class EditFormView extends AbstractClass{
 
   get template() {
     return editForm(this.#form);
+  }
+
+  setEditClickHandler = (callback) => {
+    this._callback.editClick = callback;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
+  }
+
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.editClick();
+  }
+
+  setEditFormSubmit = (callback) => {
+    this._submit.submitClick = callback;
+    this.element.addEventListener('submit', this.#submitHandler);
+  }
+
+  #submitHandler = (evt) => {
+    evt.preventDefault();
+    this._submit.submitClick();
   }
 }
