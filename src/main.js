@@ -34,16 +34,17 @@ const renderEvent = (eventListElement, event) => {
       document.removeEventListener('keydown', onEscKeyDown);
     }
   };
-  eventComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+
+  eventComponent.setEditClickHandler(() => {
     replaceEventToForm();
     document.addEventListener('keydown', onEscKeyDown);
-    eventEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+    eventEditComponent.setEditClickHandler(() => {
       replaceFormToEvent();
       document.removeEventListener('keydown', onEscKeyDown);
     });
   });
-  eventEditComponent.element.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+
+  eventEditComponent.setEditFormSubmit(() => {
     replaceFormToEvent();
     document.removeEventListener('keydown', onEscKeyDown);
   });

@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from './abstract-view.js';
 
 const createFilterMenu = () => (
   `<div class="trip-main__trip-controls  trip-controls">
@@ -26,20 +26,8 @@ const createFilterMenu = () => (
   </div>`
 );
 
-export default class FilterView {
-  #element = null;
-  get element() {
-    if(!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
+export default class FilterView extends AbstractView {
   get template() {
     return createFilterMenu();
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }
