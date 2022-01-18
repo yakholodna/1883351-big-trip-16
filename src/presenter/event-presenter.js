@@ -16,21 +16,21 @@ export default class EventPresenter {
   init = (event) => {
     this.#event = event;
 
-    this.#eventComponent = new EventView(event).element;
-    this.#eventEditComponent = new EditFormView(event).element;
+    this.#eventComponent = new EventView(event);
+    this.#eventEditComponent = new EditFormView(event);
 
     this.#eventComponent.setEditClickHandler(this.#editClickHandler);
     this.#eventEditComponent.setEditFormSubmit(this.#editFormSubmit);
 
-    renderElement(this.#eventContainer, this.#eventComponent, RenderPosition.BEFOREEND);
+    renderElement(this.#eventContainer, this.#eventComponent.element, RenderPosition.BEFOREEND);
   }
 
   #replaceEventToForm = () => {
-    this.#eventContainer.replaceChild(this.#eventEditComponent, this.#eventComponent);
+    this.#eventContainer.replaceChild(this.#eventEditComponent.element, this.#eventComponent.element);
   }
 
   #replaceFormToEvent = () => {
-    this.#eventContainer.replaceChild(this.#eventComponent, this.#eventEditComponent);
+    this.#eventContainer.replaceChild(this.#eventComponent.element, this.#eventEditComponent.element);
   }
 
   #editClickHandler = () => {
