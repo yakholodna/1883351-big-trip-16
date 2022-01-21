@@ -1,9 +1,10 @@
 import {getRandomTripType, getRandomCity, getRandomSpecialOffers, isFavorite, generateRandomDate, timeDiff, getRandomDescription} from '../utils.js';
-
+import {nanoid} from 'nanoid';
 export const generateEvent = () => {
   const startDate = generateRandomDate();
   const endDate = generateRandomDate();
   return {
+    'id': nanoid(),
     'city': getRandomCity(),
     'tripType': getRandomTripType(),
     'offers': getRandomSpecialOffers(),

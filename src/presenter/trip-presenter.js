@@ -5,6 +5,7 @@ import DestinationView from '../view/destination.js';
 import NoEvents from '../view/no-events.js';
 import {renderElement, RenderPosition} from '../render.js';
 import EventPresenter from './event-presenter.js';
+import {updateItem} from '../utils.js';
 
 export default class TripPresenter {
   #destinationContainer = null;
@@ -19,6 +20,7 @@ export default class TripPresenter {
   #noEventComponent = new NoEvents().element;
 
   #listEvents = [];
+  #eventPresenter = new Map();
 
   constructor(destinationContainer, tripContainer, filterContainer, navContainer) {
     this.#destinationContainer = destinationContainer;
@@ -31,6 +33,15 @@ export default class TripPresenter {
     this.#listEvents = [...events];
 
     this.#renderEvents();
+  }
+
+  #handleEventChange = (updatedEvent) => {
+    this.#listEvents = updateItem(this.#listEvents, updatedEvent);
+    this.#eventPresenter.get(updatedEvent.id).init(updatedEvent);
+  }
+
+  #handleModeChange = () => {
+    this.#eventPresenter.forEach((event) => {event.resetView();});
   }
 
   #renderDestination = () => {
@@ -54,8 +65,14 @@ export default class TripPresenter {
   }
 
   #renderEvent = (eventListElement, event) => {
-    const eventPresenter = new EventPresenter(eventListElement);
+    const eventPresenter = new EventPresenter(eventListElement, this.#handleEventChange, this.#handleModeChange);
     eventPresenter.init(event);
+    this.#eventPresenter.set(event.id, eventPresenter);
+  }
+
+  #clearAllEvents = () => {
+    this.#eventPresenter.forEach((presenter) => presenter.destroy());
+    this.#eventPresenter.clear();
   }
 
   #renderEvents = () => {

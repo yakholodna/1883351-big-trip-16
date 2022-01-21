@@ -5,15 +5,9 @@ const editForm = (form) => {
   const {
     city,
     tripType,
-    // eslint-disable-next-line no-unused-vars
-    offers,
     date,
     time,
     endTime,
-    // eslint-disable-next-line no-unused-vars
-    timeDiff,
-    // eslint-disable-next-line no-unused-vars
-    favorite,
     description} = form;
   return `<form class="event event--edit" action="#" method="post">
     <header class="event__header">
@@ -200,6 +194,6 @@ export default class EditFormView extends AbstractView{
 
   #submitHandler = (evt) => {
     evt.preventDefault();
-    this._submit.submitClick();
+    this._submit.submitClick(this.#form);
   }
 }

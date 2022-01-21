@@ -11,9 +11,7 @@ const createEvent = (event) => {
     time,
     endTime,
     timeDiff,
-    favorite,
-    // eslint-disable-next-line no-unused-vars
-    description} = event;
+    favorite,} = event;
   //Checks whether there are any duplicate offers
   const unique = [];
   offers.forEach((offer) => {
@@ -82,5 +80,15 @@ export default class EventView extends AbstractView {
   #editClickHandler = (evt) => {
     evt.preventDefault();
     this._callback.editClick();
+  }
+
+  setFavButtonHandler = (callback) => {
+    this._callback.favClick = callback;
+    this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favButtonClick);
+  }
+
+  #favButtonClick = (evt) => {
+    evt.preventDefault();
+    this._callback.favClick();
   }
 }
