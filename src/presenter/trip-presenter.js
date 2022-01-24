@@ -12,6 +12,7 @@ export default class TripPresenter {
   #navigationContainer = null;
   #filterContainer = null;
   #tripContainer = null;
+  #eventsContainer = null;
 
   #sortComponent = new SortMenuView().element;
   #filterComponent = new FilterView().element;
@@ -22,11 +23,12 @@ export default class TripPresenter {
   #listEvents = [];
   #eventPresenter = new Map();
 
-  constructor(destinationContainer, tripContainer, filterContainer, navContainer) {
+  constructor(destinationContainer, tripContainer, filterContainer, navContainer, evtContainer) {
     this.#destinationContainer = destinationContainer;
     this.#tripContainer = tripContainer;
     this.#filterContainer = filterContainer;
     this.#navigationContainer = navContainer;
+    this.#eventsContainer = evtContainer;
   }
 
   init = (events) => {
@@ -57,7 +59,7 @@ export default class TripPresenter {
   }
 
   #renderSort = () => {
-    renderElement(this.#tripContainer, this.#sortComponent, RenderPosition.BEFOREEND);
+    renderElement(this.#tripContainer, this.#sortComponent, RenderPosition.AFTERBEGIN);
   }
 
   #renderNoEvents = () => {
@@ -86,7 +88,7 @@ export default class TripPresenter {
       this.#renderDestination();
       this.#renderSort();
       for (let i = 0; i < this.#listEvents.length; i++) {
-        this.#renderEvent(this.#tripContainer, this.#listEvents[i]);
+        this.#renderEvent(this.#eventsContainer, this.#listEvents[i]);
       }
     }
   }

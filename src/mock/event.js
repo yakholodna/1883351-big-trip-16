@@ -13,6 +13,7 @@ export const generateEvent = () => {
     'endTime': `${endDate.format('HH:MM')}`,
     'timeDiff': timeDiff(startDate.format('HH:MM'), endDate.format('HH:MM')),
     'favorite': isFavorite(),
-    'description': getRandomDescription()
+    'description': getRandomDescription(),
+    'price': '20',
   };
 };

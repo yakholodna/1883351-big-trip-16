@@ -12,13 +12,14 @@ const filterContainer = document.querySelector('.trip-controls__filters');
 const navigationContainer = document.querySelector('.trip-controls__navigation');
 const tripEvents = document.querySelector('.trip-events');
 const tripDestination = document.querySelector('.trip-main');
+const eventsContainer = document.querySelector('.trip-events__list');
 
 const allEvents = [];
 for (let i = 0; i < EVENT_COUNT; i++) {
   allEvents.push(generateEvent());
 }
 
-const trip = new TripPresenter(tripDestination, tripEvents, filterContainer, navigationContainer);
+const trip = new TripPresenter(tripDestination, tripEvents, filterContainer, navigationContainer, eventsContainer);
 trip.init(allEvents);
 
 if(allEvents.length !== 0) {

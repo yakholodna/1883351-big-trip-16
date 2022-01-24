@@ -11,7 +11,9 @@ const createEvent = (event) => {
     time,
     endTime,
     timeDiff,
-    favorite,} = event;
+    favorite,
+    price
+  } = event;
   //Checks whether there are any duplicate offers
   const unique = [];
   offers.forEach((offer) => {
@@ -41,7 +43,7 @@ const createEvent = (event) => {
           <p class="event__duration">${timeDiff}</p>
         </div>
         <p class="event__price">
-          &euro;&nbsp;<span class="event__price-value">20</span>
+          &euro;&nbsp;<span class="event__price-value">${price}</span>
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
