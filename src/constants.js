@@ -59,3 +59,8 @@ export const cityDescriptions = [
   'Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
 ];
 export const cityDescriptionPhoto = 'http://picsum.photos/248/152?r=';
+export const SORT_TYPES = {
+  DAY: 'day',
+  TIME: 'time',
+  PRICE: 'price'
+};
