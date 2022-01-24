@@ -5,16 +5,12 @@ const editForm = (form) => {
   const {
     city,
     tripType,
-    // eslint-disable-next-line no-unused-vars
-    offers,
     date,
     time,
     endTime,
-    // eslint-disable-next-line no-unused-vars
-    timeDiff,
-    // eslint-disable-next-line no-unused-vars
-    favorite,
-    description} = form;
+    description,
+    price
+  } = form;
   return `<form class="event event--edit" action="#" method="post">
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -101,7 +97,7 @@ const editForm = (form) => {
           <span class="visually-hidden">Price</span>
           &euro;
         </label>
-        <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="160">
+        <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${price}">
       </div>
 
       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
@@ -200,6 +196,6 @@ export default class EditFormView extends AbstractView{
 
   #submitHandler = (evt) => {
     evt.preventDefault();
-    this._submit.submitClick();
+    this._submit.submitClick(this.#form);
   }
 }
