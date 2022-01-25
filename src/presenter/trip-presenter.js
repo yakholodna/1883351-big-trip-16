@@ -50,7 +50,8 @@ export default class TripPresenter {
 
   #handleSortChange = (sortType) => {
     switch(sortType) {
-      case SORT_TYPES.DAY: this.#sortByDate();
+      case SORT_TYPES.DAY:
+        this.#sortByDate();
     }
   }
 
