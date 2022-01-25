@@ -48,11 +48,29 @@ export default class TripPresenter {
     this.#eventPresenter.forEach((event) => {event.resetView();});
   }
 
-  #handleSortChange = (sortType) => {
+  #sortEvents = (sortType) => {
     switch(sortType) {
       case SORT_TYPES.DAY:
         this.#sortByDate();
+        break;
+      case SORT_TYPES.TIME:
+        this.#sortByTime();
+        break;
+      case SORT_TYPES.PRICE:
+        this.#sortByPrice();
+        break;
     }
+    this.#currentSortType = sortType;
+  }
+
+  #handleSortChange = (sortType) => {
+    if(this.#currentSortType === sortType) {
+      return;
+    }
+
+    this.#sortEvents(sortType);
+    this.#clearAllEvents();
+    this.#renderEvents();
   }
 
   #renderDestination = () => {
@@ -77,11 +95,20 @@ export default class TripPresenter {
   }
 
   #sortByDate = () => {
-    this.#listEvents.sort((a,b)=>
-      // Turn your strings into dates, and then subtract them
-      // to get a value that is either negative, positive, or zero.
-      new Date(b.date) - new Date(a.date)
-    );
+    this.#listEvents.sort((a,b)=> new Date(a.date) - new Date(b.date));
+  }
+
+  #sortByTime = () => {
+    this.#listEvents.sort((a,b)=> {
+      const timeA = (60 * Number(a.timeDiff.split('H')[0])) + (Number(a.timeDiff.split('H')[1].split('M')[0]));
+      const timeB = (60 * Number(b.timeDiff.split('H')[0])) + (Number(b.timeDiff.split('H')[1].split('M')[0]));
+
+      return timeB - timeA;
+    });
+  }
+
+  #sortByPrice = () => {
+    this.#listEvents.sort((a,b)=> b.price - a.price);
   }
 
   #renderEvent = (eventListElement, event) => {
