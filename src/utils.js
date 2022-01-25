@@ -54,6 +54,8 @@ export const timeDiff = (start, end) => {
   return `${(hours <= 9 ? '0' : '') + hours  }H${  minutes <= 9 ? '0' : ''  }${minutes}M`;
 };
 
+export const getRandomPrice = () => getRandomInteger(0, 1000);
+
 export const remove = (component) => {
   if (component === null) {
     return;

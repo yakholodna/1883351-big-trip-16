@@ -1,4 +1,4 @@
-import {getRandomTripType, getRandomCity, getRandomSpecialOffers, isFavorite, generateRandomDate, timeDiff, getRandomDescription} from '../utils.js';
+import {getRandomTripType, getRandomCity, getRandomPrice, getRandomSpecialOffers, isFavorite, generateRandomDate, timeDiff, getRandomDescription} from '../utils.js';
 import {nanoid} from 'nanoid';
 export const generateEvent = () => {
   const startDate = generateRandomDate();
@@ -14,6 +14,6 @@ export const generateEvent = () => {
     'timeDiff': timeDiff(startDate.format('HH:MM'), endDate.format('HH:MM')),
     'favorite': isFavorite(),
     'description': getRandomDescription(),
-    'price': '20',
+    'price': getRandomPrice(),
   };
 };
