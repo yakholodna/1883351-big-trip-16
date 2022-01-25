@@ -24,6 +24,7 @@ export default class TripPresenter {
   #listEvents = [];
   #eventPresenter = new Map();
   #currentSortType = SORT_TYPES.DAY;
+  #isInitialRender = true;
 
   constructor(destinationContainer, tripContainer, filterContainer, navContainer, evtContainer) {
     this.#destinationContainer = destinationContainer;
@@ -64,10 +65,10 @@ export default class TripPresenter {
   }
 
   #handleSortChange = (sortType) => {
-    if(this.#currentSortType === sortType) {
+    if(this.#currentSortType === sortType && !this.#isInitialRender) {
       return;
     }
-
+    this.#isInitialRender = false;
     this.#sortEvents(sortType);
     this.#clearAllEvents();
     this.#renderEvents();
@@ -135,6 +136,7 @@ export default class TripPresenter {
       for (let i = 0; i < this.#listEvents.length; i++) {
         this.#renderEvent(this.#eventsContainer, this.#listEvents[i]);
       }
+      this.#handleSortChange(this.#currentSortType);
     }
   }
 }
